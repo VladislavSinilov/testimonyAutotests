@@ -9,9 +9,6 @@ import ru.neoflex.model.RequestSaveTestimony;
 public class SaveTestimonyTest {
 
 
-    String saveTestimonyURI = "http://localhost:8080/services/testimony/save";
-
-
     @Test
     public void checkCodeSuccessTest() {
 
