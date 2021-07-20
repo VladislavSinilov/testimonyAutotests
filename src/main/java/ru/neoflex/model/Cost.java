@@ -1,6 +1,6 @@
 package ru.neoflex.model;
 
-import com.google.gson.annotations.SerializedName;
+import com.google.gson.annotations.*;
 
 public class Cost{
 
