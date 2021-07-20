@@ -36,8 +36,6 @@ public class RequestTestController {
     public static int getRequestCode(String uRL) {
 
         return given().
-                contentType(ContentType.JSON).
-                when().
                 post(uRL).
                 then().
                 extract().

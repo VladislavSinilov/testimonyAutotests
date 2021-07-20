@@ -27,8 +27,29 @@ public class ChangePriceTest {
 
         Assertions.assertEquals(200, statusCode);
         System.out.println("codeStatus is :" + statusCode);
+        System.out.println("");
 
+    }
 
+    @Test
+    public void checkStatus404() {
+
+        String changePriceURI = "http://localhost:8080/services/testimony/";
+
+        RequestChangePriceTestimony requestChangePriceTestimony = new RequestChangePriceTestimony();
+        Price price = new Price();
+
+        price.setPriceHotWater(50);
+        price.setPriceGas(30);
+        price.setPriceElectricity(50);
+        price.setPriceColdWater(20);
+
+        requestChangePriceTestimony.setPrice(price);
+
+        int statusCode = RequestTestController.getRequestCode(changePriceURI, requestChangePriceTestimony);
+
+        Assertions.assertEquals(404, statusCode);
+        System.out.println("codeStatus is :" + statusCode);
 
     }
 
