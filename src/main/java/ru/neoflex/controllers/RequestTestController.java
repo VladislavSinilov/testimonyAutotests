@@ -6,8 +6,6 @@ import static io.restassured.RestAssured.given;
 
 public class RequestTestController {
 
-    //Метод для отправки Post запроса на микросервис.
-
     public static int getRequestCode(String uRL, RequestSaveTestimony requestSaveTestimony) {
 
         return given().
