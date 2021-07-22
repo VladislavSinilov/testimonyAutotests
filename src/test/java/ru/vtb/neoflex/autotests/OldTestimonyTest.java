@@ -3,6 +3,7 @@ package ru.vtb.neoflex.autotests;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 import ru.neoflex.controllers.RequestTestController;
+import ru.neoflex.model.ResponseSaveTestimony;
 
 
 public class OldTestimonyTest {
@@ -48,4 +49,22 @@ public class OldTestimonyTest {
         System.out.println("codeStatus is :" + statusCode);
 
     }
+ /*
+    @Test
+    public void checkResponseCodeSuccess() {
+
+
+        String oldTestimonyURI = "http://localhost:8080/services/testimony/get/old/testimony/02-2020";
+
+
+
+        ResponseSaveTestimony responseSaveTestimony = RequestTestController.getResponseBodySave(oldTestimonyURI);
+        String resultCode = responseSaveTestimony.getFaultcode().getResultCode() ;
+        String resultText = responseSaveTestimony.getFaultcode().getResultText();
+        System.out.println(resultCode);
+        System.out.println(resultText);
+        Assertions.assertEquals("0", resultCode);
+        Assertions.assertEquals("success", resultText);
+
+    } */
 }
