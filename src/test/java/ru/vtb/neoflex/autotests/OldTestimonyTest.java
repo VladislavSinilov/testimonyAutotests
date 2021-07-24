@@ -3,7 +3,10 @@ package ru.vtb.neoflex.autotests;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 import ru.neoflex.controllers.RequestTestController;
+import ru.neoflex.dao.MySQLConnector;
 import ru.neoflex.model.ResponseSaveTestimony;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 
 public class OldTestimonyTest {
@@ -39,23 +42,11 @@ public class OldTestimonyTest {
     }
 
     @Test
-    public void checkStatus405() {
-
-        String oldTestimonyURI = "http://localhost:8080/services/testimony/get/old/testimony/50-2020";
-
-        int statusCode = RequestTestController.getRequestCode(oldTestimonyURI);
-
-        Assertions.assertEquals(405, statusCode);
-        System.out.println("codeStatus is :" + statusCode);
-
-    }
- /*
-    @Test
-    public void checkResponseCodeSuccess() {
+    public void checkResponseCodeSuccess() throws SQLException {
 
 
         String oldTestimonyURI = "http://localhost:8080/services/testimony/get/old/testimony/02-2020";
-
+        String dateForTest = "02-2020";
 
 
         ResponseSaveTestimony responseSaveTestimony = RequestTestController.getResponseBodySave(oldTestimonyURI);
@@ -66,5 +57,11 @@ public class OldTestimonyTest {
         Assertions.assertEquals("0", resultCode);
         Assertions.assertEquals("success", resultText);
 
-    } */
+        ResultSet expectedResult = MySQLConnector.selectAllFromTestimony_History(dateForTest);
+                while(expectedResult.next()) {
+                    String date  = expectedResult.getString("currentmonth");
+                    Assertions.assertEquals(date, dateForTest);
+
+                }
+    }
 }

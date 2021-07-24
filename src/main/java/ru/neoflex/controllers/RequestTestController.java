@@ -38,7 +38,7 @@ public class RequestTestController {
     public static int getRequestCode(String uRL) {
 
         return given().
-                post(uRL).
+                get(uRL).
                 then().
                 extract().
                 response().
@@ -70,14 +70,14 @@ public class RequestTestController {
                 response().
                 as(ResponseChangePriceTestimony.class);
     }
- /*
+
     public static ResponseSaveTestimony getResponseBodySave(String uRL) {
 
         return given().
-                post(uRL).
+                get(uRL).
                 then().
                 extract().
                 response().
                 as(ResponseSaveTestimony.class);
-    } */
+    }
 }
