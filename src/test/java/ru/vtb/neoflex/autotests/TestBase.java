@@ -47,20 +47,5 @@ public class TestBase {
             }.getType());
             return request.stream().map((c) -> new Object[]{c}).collect(Collectors.toList()).iterator();
         }
-
-       /* public static Iterator<Object[]> validRequestOldTestimony(String path) throws IOException {
-            try (BufferedReader reader = new BufferedReader(new InputStreamReader(
-                    new FileInputStream(path), StandardCharsets.UTF_8))) {
-                String json = "";
-                String line = reader.readLine();
-                while (line != null) {
-                    json += line;
-                    line = reader.readLine();
-                }
-                Gson gson = new Gson();
-                List<ResponseSaveTestimony> request = gson.fromJson(json, new TypeToken<List<ResponseSaveTestimony>>() {
-                }.getType());
-                return request.stream().map((c) -> new Object[]{c}).collect(Collectors.toList()).iterator();
-            } */
     }
 }

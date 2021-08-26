@@ -13,7 +13,7 @@ public class OldTestimonyTest {
 
 
 
-    /* @Test
+    @Test
     public void checkStatus200() {
 
 
@@ -63,5 +63,5 @@ public class OldTestimonyTest {
                     Assertions.assertEquals(date, dateForTest);
 
                 }
-    } */
+    }
 }
