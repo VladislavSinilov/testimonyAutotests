@@ -2,19 +2,38 @@ package ru.vtb.neoflex.autotests;
 
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 import ru.neoflex.controllers.RequestTestController;
 import ru.neoflex.dao.MySQLConnector;
 import ru.neoflex.model.CurrentTestimony;
 import ru.neoflex.model.RequestSaveTestimony;
 import ru.neoflex.model.ResponseSaveTestimony;
-
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Iterator;
+import static ru.vtb.neoflex.autotests.TestBase.validRequest;
 
 public class SaveTestimonyTest {
 
+    static String saveTestimonyURI = "http://localhost:8080/services/testimony/save";
 
-    @Test
+    public static Iterator<Object[]> dataRead() throws IOException {
+        String requestFile = "src/test/resources/SaveTestimonyTest";
+        return validRequest(requestFile);
+    }
+
+    @MethodSource("dataRead")
+    @ParameterizedTest
+    public void checkCodeSuccessTest(RequestSaveTestimony requestSaveTestimony) {
+        int actualStatusCode = RequestTestController.getRequestCode(saveTestimonyURI, requestSaveTestimony);
+        Assertions.assertEquals(200, actualStatusCode);
+        System.out.println("Status code is : " + actualStatusCode);
+    }
+
+
+  /*  @Test
     public void checkCodeSuccessTest() {
 
         String saveTestimonyURI = "http://localhost:8080/services/testimony/save";
@@ -74,5 +93,5 @@ public class SaveTestimonyTest {
 
         }
 
-    }
+    } */
 }
