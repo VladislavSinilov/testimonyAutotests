@@ -2,18 +2,40 @@ package ru.vtb.neoflex.autotests;
 
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 import ru.neoflex.controllers.RequestTestController;
 import ru.neoflex.dao.MySQLConnector;
 import ru.neoflex.model.Price;
 import ru.neoflex.model.RequestChangePriceTestimony;
 import ru.neoflex.model.ResponseChangePriceTestimony;
 
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Iterator;
+
+import static ru.vtb.neoflex.autotests.TestBase.validRequestChangePriceTestimony;
+
 
 public class ChangePriceTest {
 
-    @Test
+    static String changePriceURI = "http://localhost:8080/services/testimony/changePrice";
+
+    public static Iterator<Object[]> dataRead() throws IOException {
+        String requestFile = "src/test/resources/ChangePriceTest";
+        return validRequestChangePriceTestimony(requestFile);
+    }
+
+    @MethodSource("dataRead")
+    @ParameterizedTest
+    public void checkCodeSuccessTest(RequestChangePriceTestimony requestChangePriceTestimony) {
+        int actualStatusCode = RequestTestController.getRequestCode(changePriceURI, requestChangePriceTestimony );
+        Assertions.assertEquals(200, actualStatusCode);
+        System.out.println("Status code is : " + actualStatusCode);
+    }
+
+   /* @Test
     public void checkStatus200() {
 
         String changePriceURI = "http://localhost:8080/services/testimony/changePrice";
@@ -94,7 +116,7 @@ public class ChangePriceTest {
                 Assertions.assertEquals(priceElectricity,requestChangePriceTestimony.getPrice().getPriceElectricity());
             }
 
-    }
+    } */
 
 
 }

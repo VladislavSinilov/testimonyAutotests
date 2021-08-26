@@ -13,7 +13,9 @@ import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Iterator;
-import static ru.vtb.neoflex.autotests.TestBase.validRequest;
+
+import static ru.vtb.neoflex.autotests.TestBase.validRequestSaveTestimony;
+
 
 public class SaveTestimonyTest {
 
@@ -21,7 +23,7 @@ public class SaveTestimonyTest {
 
     public static Iterator<Object[]> dataRead() throws IOException {
         String requestFile = "src/test/resources/SaveTestimonyTest";
-        return validRequest(requestFile);
+        return validRequestSaveTestimony(requestFile);
     }
 
     @MethodSource("dataRead")
